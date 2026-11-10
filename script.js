@@ -22,8 +22,8 @@ function divide(val1, val2) {
 
 // console.log(divide(12, 2)); // should return 6
 
-function operate(operand1, operator, operand2) {
-    
+function operate(string) {
+
     switch(operator) {
         case '+': 
             return add(operand1, operand2);
@@ -60,16 +60,37 @@ const buttonsContainer = document.createElement("div");
 buttonsContainer.id = "buttons-container";
 superContainer.appendChild(buttonsContainer);
 
-let buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '=', '*', '/'];
+let buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '=', '<', '*', '/'];
+let string = "";
 
 for (i in buttons) {
     let button = document.createElement("div");
     button.className = "button";
     button.textContent = buttons[i];
+    button.dataset.content = button.textContent;
 
-    if (i == 12) {
-        button.id = "equal-button"
-    }
+    button.addEventListener("mousedown", (event) => {
+        event.target.classList.toggle('clicked-button');
+        // string = printOnScreen(event, string);
+        console.log(event.target.dataset.content);
+    });
+
+    button.addEventListener("mouseup", (event) => {
+        event.target.classList.toggle('clicked-button');
+    });
+
+    button.style.cursor = "pointer";    
+
+    // if (i == 12) {
+    //     button.id = "equal-button"
+    // }
 
     buttonsContainer.appendChild(button);
 }
+
+// function printOnScreen(event, string) {
+//     newString = string + event.target.dataset.content 
+//     screen.textContent = newString;
+//     superContainer.append(screen);
+//     return newString;
+// }

@@ -6,8 +6,13 @@
 }
 
 #screen {
+    display: flex;
     background-color: lightgrey;
     flex: 1;
+    order: -1;
+    font-size: 120px;
+    justify-content: right;
+    align-items: end;
 }
 
 #buttons-container {
@@ -31,4 +36,8 @@
 
 #equal-button {
     flex: 2;
+}
+
+.clicked-button {
+    background-color: darkgrey;
 }
