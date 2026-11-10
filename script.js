@@ -71,7 +71,7 @@ for (i in buttons) {
 
     button.addEventListener("mousedown", (event) => {
         event.target.classList.toggle('clicked-button');
-        // string = printOnScreen(event, string);
+        string = printOnScreen(event, string);
         console.log(event.target.dataset.content);
     });
 
@@ -88,9 +88,9 @@ for (i in buttons) {
     buttonsContainer.appendChild(button);
 }
 
-// function printOnScreen(event, string) {
-//     newString = string + event.target.dataset.content 
-//     screen.textContent = newString;
-//     superContainer.append(screen);
-//     return newString;
-// }
+function printOnScreen(event, string) {
+    newString = string + event.target.dataset.content 
+    screen.textContent = newString;
+    superContainer.append(screen);
+    return newString;
+}
