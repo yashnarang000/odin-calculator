@@ -1,0 +1,21 @@
+#ultimate-container {
+    border: 2px solid blue;
+    /* display: flex; */
+}
+
+#super-container {
+    border: 2px solid red;
+    display: flex;
+    height: 97dvh;
+    flex-direction: column;
+}
+
+#screen {
+    background-color: green;
+    flex: 1;
+}
+
+#buttons-container {
+    background-color: yellow;
+    flex: 3;
+}

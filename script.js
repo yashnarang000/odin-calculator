@@ -45,3 +45,17 @@ function operate(operand1, operator, operand2) {
 }
 
 console.log(operate(1, "+", 5)); // should return 6
+
+const ultimateContainer = document.querySelector("#ultimate-container");
+
+const superContainer = document.createElement("div");
+superContainer.id = "super-container";
+ultimateContainer.appendChild(superContainer);
+
+const screen = document.createElement("div");
+screen.id = "screen";
+superContainer.appendChild(screen);
+
+const buttonsContainer = document.createElement("div");
+buttonsContainer.id = "buttons-container";
+superContainer.appendChild(buttonsContainer);
