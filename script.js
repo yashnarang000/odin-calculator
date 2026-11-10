@@ -20,4 +20,28 @@ function divide(val1, val2) {
     return val1 / val2;
 }
 
-console.log(divide(12, 2)); // should return 6
+// console.log(divide(12, 2)); // should return 6
+
+function operate(operand1, operator, operand2) {
+    
+    switch(operator) {
+        case '+': 
+            return add(operand1, operand2);
+            break; 
+
+        case '-':
+            return subtract(operand1, operand2);
+            break;
+        
+        case '*':
+            return multiply(operand1, operand2);
+            break;
+
+        case '/':
+            return divide(operand1, operand2);
+            break;
+    }
+
+}
+
+console.log(operate(1, "+", 5)); // should return 6
