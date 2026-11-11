@@ -1,3 +1,6 @@
+// I have written most of the code here after one night of sleeplessness and three ciggerettes, and I am astonished by my own genius!
+
+
 let buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', '<', '/', '*', '+', '-', '='];
 const validOperators = ['/', '*', '+', '-'];
 let string = "";
