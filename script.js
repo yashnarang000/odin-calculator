@@ -44,6 +44,8 @@ function operate(string) {
 
 }
 
+function operateOnString(string) {return string}
+
 // console.log(operate(1, "+", 5)); // should return 6
 
 const ultimateContainer = document.querySelector("#ultimate-container");
@@ -71,7 +73,7 @@ for (i in buttons) {
 
     button.addEventListener("mousedown", (event) => {
         event.target.classList.toggle('clicked-button');
-        string = printOnScreen(event.target.dataset.content, string);
+        string = onPress(event.target.dataset.content, string);
         // console.log(event.target.dataset.content);
     });
 
@@ -80,12 +82,6 @@ for (i in buttons) {
     });
 
     button.style.cursor = "pointer";
-
-    if (i == 13) {
-        button.addEventListener("mousedown", (event) => {
-            string = deleteFromScreen(string);
-        });
-    }
 
     buttonsContainer.appendChild(button);
 }
@@ -98,21 +94,34 @@ function printOnScreen(letter, string) {
 }
 
 function deleteFromScreen(string) {
-    let newString = string.substring(0, string.length - 2);
-    console.log(newString);
+    let newString = string.substring(0, string.length - 1);
+    // console.log(newString);
     screen.textContent = newString;
     superContainer.append(screen);
     return newString;
 }
 
-// document.addEventListener('keydown', (event) => {
-//     if (`${event.key}` in buttons) {
-//         string = printOnScreen(event.key, string);
-//     }
-    
-//     else {
-//         console.log(event.key);
-//     }
-// });
+function onPress(buttonContent, string) {
+    if (buttonContent == "Backspace" || buttonContent == "<") {
+        string = deleteFromScreen(string);
+    }
 
-// to be continued : keyboard event listener takes in numbers only, not operators. fix that!
+    else if (buttonContent == "=" || buttonContent == "Enter") {
+        string = operateOnString(string);
+        console.log("operated!");
+    }
+
+    else if (buttons.includes(buttonContent)) {
+        string = printOnScreen(buttonContent, string);
+    }
+
+    else {
+        console.log(buttonContent);
+    }
+
+    return string;
+}
+
+document.addEventListener("keydown", (event) => {
+    string = onPress(event.key, string);
+});
