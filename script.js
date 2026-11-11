@@ -60,7 +60,7 @@ const buttonsContainer = document.createElement("div");
 buttonsContainer.id = "buttons-container";
 superContainer.appendChild(buttonsContainer);
 
-let buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '=', '<', '*', '/'];
+let buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '=', '<', '*', '/'];
 let string = "";
 
 for (i in buttons) {
@@ -71,26 +71,48 @@ for (i in buttons) {
 
     button.addEventListener("mousedown", (event) => {
         event.target.classList.toggle('clicked-button');
-        string = printOnScreen(event, string);
-        console.log(event.target.dataset.content);
+        string = printOnScreen(event.target.dataset.content, string);
+        // console.log(event.target.dataset.content);
     });
 
     button.addEventListener("mouseup", (event) => {
         event.target.classList.toggle('clicked-button');
     });
 
-    button.style.cursor = "pointer";    
+    button.style.cursor = "pointer";
 
-    // if (i == 12) {
-    //     button.id = "equal-button"
-    // }
+    if (i == 13) {
+        button.addEventListener("mousedown", (event) => {
+            string = deleteFromScreen(string);
+        });
+    }
 
     buttonsContainer.appendChild(button);
 }
 
-function printOnScreen(event, string) {
-    newString = string + event.target.dataset.content 
+function printOnScreen(letter, string) {
+    let newString = string + letter;
     screen.textContent = newString;
     superContainer.append(screen);
     return newString;
 }
+
+function deleteFromScreen(string) {
+    let newString = string.substring(0, string.length - 2);
+    console.log(newString);
+    screen.textContent = newString;
+    superContainer.append(screen);
+    return newString;
+}
+
+// document.addEventListener('keydown', (event) => {
+//     if (`${event.key}` in buttons) {
+//         string = printOnScreen(event.key, string);
+//     }
+    
+//     else {
+//         console.log(event.key);
+//     }
+// });
+
+// to be continued : keyboard event listener takes in numbers only, not operators. fix that!
