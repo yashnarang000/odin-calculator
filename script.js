@@ -1,6 +1,7 @@
-let buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '=', '<', '*', '/'];
+let buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', '<', '/', '*', '+', '-', '='];
 const validOperators = ['/', '*', '+', '-'];
 let string = "";
+let decimalLog = "0";
 
 // function replaceWithResult(string, operatorIndex, result) {
 //     chars = string.split("");
@@ -151,6 +152,15 @@ function deleteFromScreen(string) {
 
 function onPress(buttonContent, string) {
     if (buttonContent == "Backspace" || buttonContent == "<") {
+
+        if (string.slice(-1) == '.') {
+            decimalLog = decimalLog.slice(0, -1) + "0";
+        }
+
+        if (validOperators.includes(string.slice(-1))) {
+            decimalLog = decimalLog.slice(0, -1);
+        }
+
         string = deleteFromScreen(string);
     }
 
@@ -161,17 +171,36 @@ function onPress(buttonContent, string) {
         }
 
         string = operateOnString(string);
+
+        if (string.includes('.')) {
+            decimalLog = "1";
+        }
+
+        else {
+            decimalLog = "0";
+        }
+
         console.log("operated!");
     }
 
 
     else if (validOperators.includes(buttonContent)) {
+        decimalLog = decimalLog + "0";
 
         if (validOperators.includes(string.slice(-1))) {
-            string = deleteFromScreen(string);
+            string = deleteFromScreen(string);  string = deleteFromScreen(string);
         }
 
         string = printOnScreen(buttonContent, string);  
+    }
+
+    else if (buttonContent == '.') {
+        if (decimalLog.slice(-1) == '1') {}
+
+        else {
+            string = printOnScreen(buttonContent, string);
+            decimalLog = decimalLog.slice(0, -1) + "1";
+        }
     }
 
     else if (buttons.includes(buttonContent)) {
